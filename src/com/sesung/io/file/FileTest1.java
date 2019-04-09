@@ -25,6 +25,7 @@ public class FileTest1 {
 		//fiel.mkdir(); 디렉토리만들기
 		file = new File("c:\\test\\test2");
 		file.delete();
+//		file.createNewFile(파일명); // 새로운 파일 만들기
 		
 //		for(int i =0; i<ar.length; i++) {
 //		System.out.println(ar[i]);
