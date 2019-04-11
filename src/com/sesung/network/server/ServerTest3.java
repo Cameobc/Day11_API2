@@ -41,8 +41,10 @@ public class ServerTest3 {
 			String menu = br.readLine();
 			if(menu.equals("점심")) {
 				File file = new File("c:\\test", "lunch.txt");
-				fw = new FileWriter(file, true);
+				fw = new FileWriter(file, false);
 				System.out.println("메뉴 입력");
+				fw.write("start"+"\r\n");
+				fw.flush();
 				fw.write(sc.next());
 				fw.flush();
 				fr = new FileReader(file);
@@ -52,13 +54,7 @@ public class ServerTest3 {
 				String [] ln = lunch.split(",");
 				Random random = new Random();
 				int i = random.nextInt(ln.length);
-				lunch = ln[i];
-				os = s.getOutputStream();
-				ow = new OutputStreamWriter(os);
-				bw = new BufferedWriter(ow);
-				bw.write(lunch);
-				bw.write("\r\n");
-				bw.flush();
+				menu = ln[i];
 			}else if(menu.equals("저녁")){
 				File file = new File("c:\\test", "dinner.txt");
 				fr = new FileReader(file);
@@ -68,13 +64,7 @@ public class ServerTest3 {
 				String [] dn = dinner.split(",");
 				Random random = new Random();
 				int i = random.nextInt(dn.length);
-				dinner = dn[i];
-				os = s.getOutputStream();
-				ow = new OutputStreamWriter(os);
-				bw = new BufferedWriter(ow);
-				bw.write(dinner);
-				bw.write("\r\n");
-				bw.flush();
+				menu = dn[i];
 			}else {
 				File file = new File("c:\\test", "dinner.txt");
 				fr = new FileReader(file);
@@ -91,13 +81,12 @@ public class ServerTest3 {
 				Random random = new Random();
 				int i = random.nextInt(al.length);
 				menu = al[i];
-				os = s.getOutputStream();
-				ow = new OutputStreamWriter(os);
-				bw = new BufferedWriter(ow);
-				bw.write(menu);
-				bw.write("\r\n");
-				bw.flush();
 			}
+			os = s.getOutputStream();
+			ow = new OutputStreamWriter(os);
+			bw = new BufferedWriter(ow);
+			bw.write(menu+"\r\n");
+			bw.flush();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
